@@ -228,6 +228,10 @@ const generateSTYLES = () => {
       margin-left: -1000px;
     }
   }
+  .i {
+    width: 100px;
+    height: 100px;
+  }
    </style>`;
 };
 
@@ -247,6 +251,7 @@ const generateHTML = (pageName) => {
       <hr>
       <div class='_1'>GET BACK TO WORK</div>
       <div class='_2'>STUDYING > ${pageName}</div>
+      <div class="x1 fa-brands fa-facebook"></i>
   </div>
    `;
 };
@@ -255,10 +260,16 @@ switch (window.location.hostname) {
   case "www.youtube.com":
     document.head.innerHTML = generateSTYLES();
     document.body.innerHTML = generateHTML("YOUTUBE");
+
     break;
   case "www.facebook.com":
     document.head.innerHTML = generateSTYLES();
     document.body.innerHTML = generateHTML("FACEBOOK");
+    console.log(window.FontAwesomeCdnConfig);
+    console.log(window);
+    console.log("ios");
+    //document.body.style.backgroundColor = blue;
+    //console.log(document.body.style);
     break;
   case "www.netflix.com":
     document.head.innerHTML = generateSTYLES();
