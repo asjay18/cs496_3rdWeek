@@ -43,6 +43,11 @@ let page = document.getElementById("buttonDiv");
 let selectedClassName = "current";
 // 제공할 배경색 목록
 const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1"];
+let add_btn = document.getElementById("add");
+// CSS 클래스명
+let i=0;
+// 제공할 배경색 목록
+const addButtonColors = ["#000", "orange", "purple", "pink"]
 
 /**
  * @param {object} event - 이벤트
@@ -83,3 +88,12 @@ function constructOptions(buttonColors) {
 
 // 최초 버튼 컬러 표시 및 이벤트 등록 호출
 constructOptions(presetButtonColors);
+
+add_btn.addEventListener("click", add);
+function add(){
+  console.log("add");
+  //presetButtonColors.push("#000");
+  //console.log(presetButtonColors[5])
+
+  constructOptions([addButtonColors[i++]]);
+}
