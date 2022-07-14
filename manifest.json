@@ -18,7 +18,7 @@
     "default_title": "Procrastination Blocker"
   },
   "permissions": [
-    "https://www.youtube.com/*",
+    "https://www.youtube.com/*", 
     "https://www.facebook.com/*",
     "https://www.netflix.com/*",
     "activeTab",

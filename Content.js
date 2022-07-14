@@ -137,7 +137,7 @@ const generateSTYLES = () => {
     -webkit-animation: moveclouds 15s linear infinite;
     -moz-animation: moveclouds 15s linear infinite;
     -o-animation: moveclouds 15s linear infinite;
-  }
+  } 
   
   .x1_5 {
     top: -80px;
