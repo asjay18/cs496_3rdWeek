@@ -2,9 +2,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="robots" content="noindex, nofollow">
         <title>Timesaver | options</title>
-        <link href="./style.css" rel="stylesheet">
+        <link href="./button.css" rel="stylesheet">
         <style data-styled="active" data-styled-version="5.0.1"></style>
         <script type="text/javascript" src="./options.js" defer></script> 
     </head>
@@ -27,8 +26,14 @@
                     <!--차단사이트 설정 인풋 바-->
                     <div class="inputsitebar">
                         <input id="input-site" placeholder="input website (ex: youtube.com)" value>
+                        <div class="input-time">
+                            <select id="hh"></select>
+                            <select id="mm"></select>
+                            <select id="ss"></select>
+                        </div>
+                        <button id="btn-addsite">Add Item</button>
                     </div>
-
+                </div>
             </div>
             <!--페이지 메인2: select skin-->
             <div class="paddedwindow">
@@ -37,4 +42,19 @@
             </div>
         </div>
     </body>
+</html>
+
+<!DOCTYPE html>
+<html lang=en>
+<meta charset=utf-8>
+<head>
+    <link rel="stylesheet" href="button.css">
+</head>
+<body>
+<div id="buttonDiv"></div>
+<div>
+    <p>배경색 변경</p>
+</div>
+</body> 
+<script src="options.js"></script>
 </html>
