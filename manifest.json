@@ -24,6 +24,11 @@
     "https://www.netflix.com/*",
     "storage",
     "activeTab",
-    "scripting"
+    "scripting",
+    "<all_urls>"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://*/"
   ]
 }

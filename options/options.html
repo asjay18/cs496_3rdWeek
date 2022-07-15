@@ -4,49 +4,71 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Timesaver | options</title>
         <link href="./button.css" rel="stylesheet">
+        <link href="./tab.css" rel="stylesheet">
         <style data-styled="active" data-styled-version="5.0.1"></style>
         <script type="text/javascript" src="./options.js" defer></script> 
     </head>
     <body>
-        <!--페이지 제목 부분-->
-        <div class="title">
-            <h1 id="title">TimeSaver</h1>
-        </div>
-        <!--페이지 사이드바 부분-->
-        <div class="sidebar">
+        <div class="hero">
+            <div class="tabs">
+                <button id="tab1">STATUE OF UNITY</button>
+                <button id="tab2">STATUE OF UNITY2</button>
+                <button id="tab3">STATUE OF UNITY3</button>
+                <button id="tab4">STATUE OF UNITY4</button>
+            </div>
+            <div class="content-box">
+                <div id="content1">
+                    <div class="content-text">
+                        <p>
+                            <!--페이지 제목 부분-->
+                            <div class="title">
+                                <h1 id="title">TimeSaver</h1>
+                            </div>
+                                        <div class="sectiontitle"><h2 id="title-addsite">Add Sites</h2></div>
+                                        <div class="description">사이트를 제한 시간동안만 사용할 수 있도록 설정합니다</div>
+                                        <!--차단사이트 설정 인풋 바-->
+                                        <div class="inputsitebar">
+                                            <input id="input-site" placeholder="input website (ex: youtube.com)" value>
+                                            <div class="input-time">
+                                                <select id="hh"></select>
+                                                <select id="mm"></select>
+                                                <select id="ss"></select>
+                                            </div>
+                                            <button id="btn-addsite">Add Item</button>
+                                        </div>
+                        </p>
 
-        </div>
-        <!--페이지 메인 부분-->
-        <div class="mainwindow">
-            <!--페이지 메인1: set site-->
-            <div class="paddedwindow">
-                <div class="subwindow">   
-                    <div class="sectiontitle"><h2 id="title-addsite">Add Sites</h2></div>
-                    <div class="description">사이트를 제한 시간동안만 사용할 수 있도록 설정합니다</div>
-                    <!--차단사이트 설정 인풋 바-->
-                    <div class="inputsitebar">
-                        <input id="input-site" placeholder="input website (ex: youtube.com)" value>
-                        <div class="input-time">
-                            <select id="hh"></select>
-                            <select id="mm"></select>
-                            <select id="ss"></select>
-                        </div>
-                        <button id="btn-addsite">Add Item</button>
                     </div>
                 </div>
-            </div>
-            <!--페이지 메인2: select skin jaemo-->
-            <div class="paddedwindow">
-                <div class="subwindow">   
-                <div class="sectiontitle"><h2 id="title-selectskin">Select Skins</h2></div>
-                
-                <div id="buttonDiv"></div>
-                <div>
-                    <p>배경색 변경</p>
+                <div id="content2">
+                    <div class="content-text">
+                        <p>         <!--페이지 메인2: select skin jaemo-->
+                            <div class="paddedwindow">
+                                <div class="subwindow">   
+                                <div class="sectiontitle"><h2 id="title-selectskin">Select Skins</h2></div>
+                                
+                                <div id="buttonDiv"></div>
+                                <div>
+                                    <p>배경색 변경</p>
+                                </div>
+                                <button id="add">배경색 추가</button>
+                                
+                            </div>
+                        </div>
+                        </p>
+                    </div>
                 </div>
-                <button id="add">배경색 추가</button>
-                
-            </div>
+                <div id="content3">
+                    <div class="content-text">
+                        <p>hi</p>
+                    </div>
+                </div>
+                <div id="content4">
+                    <div class="content-text">
+                        <p>hi</p>
+                    </div>
+                </div>
+                </div>
         </div>
     </body>
 </html>
