@@ -38,38 +38,6 @@ function loadtab(tab_number){
   last = tab_number;
 }
 
-(function() { // don't leak
-  var selectHour = document.getElementById('hh'), // get the select
-      df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-  for (var i = 0; i <= 23; i++) { 
-      var option = document.createElement('option'); // create the option element
-      option.value = i; // set the value property
-      option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
-      df.appendChild(option); // append the option to the document fragment
-  }
-  selectHour.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
-
-  var selectMinute = document.getElementById('mm'), // get the select
-      df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-  for (var i = 0; i <= 50; i+= 10) { 
-      var option = document.createElement('option'); 
-      option.value = i; 
-      option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
-      df.appendChild(option); 
-  }
-  selectMinute.appendChild(df); 
-
-  var selectSec = document.getElementById('ss'), // get the select
-      df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-  for (var i = 0; i <= 50; i+=10) { 
-      var option = document.createElement('option'); 
-      option.value = i; 
-      option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
-      df.appendChild(option); 
-  }
-  selectSec.appendChild(df); 
-}());
-
 
 /**
 * ---------------------------------------------------------------------------------

@@ -1,4 +1,39 @@
 
+(function() { // don't leak
+    var selectHour = document.getElementById('hh'), // get the select
+        df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+    for (var i = 0; i <= 23; i++) { 
+        var option = document.createElement('option'); // create the option element
+        option.value = i; // set the value property
+        option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
+        df.appendChild(option); // append the option to the document fragment
+    }
+    selectHour.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
+  
+    var selectMinute = document.getElementById('mm'), // get the select
+        df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+    for (var i = 0; i <= 55; i+= 5) { 
+        var option = document.createElement('option'); 
+        option.value = i; 
+        option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
+        df.appendChild(option); 
+    }
+    selectMinute.appendChild(df); 
+  
+    var selectSec = document.getElementById('ss'), // get the select
+        df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+    for (var i = 0; i <= 50; i+=10) { 
+        var option = document.createElement('option'); 
+        option.value = i; 
+        option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
+        df.appendChild(option); 
+    }
+    selectSec.appendChild(df); 
+  }()
+);
+
+
+
 chrome.identity.getProfileUserInfo(function(userinfo) {
     const userid = userinfo.id
     // ------------- content1: 1.입력받아서 Box에 그리고 json 저장 -------------------
@@ -8,6 +43,7 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
     let addSecSelect = document.getElementById('ss')
     let addItemBtn = document.getElementById('btn-addsite')
     const box = document.getElementById("blockedSiteBox")
+    let saveButton = document.getElementById("saveButton")
 
     function parseMillisec(hh, mm, ss){
         let h=parseInt(hh)
@@ -85,7 +121,6 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
 
     // ------------- content1: 1. 저장되어 있는 json 불러와서 블럭 안에 표시!
     let jsonObj = {"userid": userid}
-    console.log(jsonObj)
     getInfo(jsonObj)
 
     // ------------------- content1: 2. item 추가 --------------
@@ -109,6 +144,10 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
         let jsonObj = {"userid":userid, "data": userInfo}
         changeInfo(jsonObj)
         createSiteBlock(siteList)
+    })
+
+    saveButton.addEventListener('click', () => {
+        chrome.runtime.reload()
     })
 
     // ------------------- Remove Blockes Site --------------------

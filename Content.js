@@ -1,3 +1,6 @@
+// contentscript.js
+
+
 const generateSTYLES = () => {
   return `<style>@import url(https://fonts.googleapis.com/css?family=opensans:500);
   body {
@@ -231,14 +234,6 @@ const generateSTYLES = () => {
    </style>`;
 };
 
-var fr = new FileReader()
-fr.onload = function(){
-  document.getElementById('output').textContent=fr.result;
-}
-fr.readAsText(this.files[0])
-var txtURL = chrome.runtime.getURL("/info.txt");
-
-
 const gamepage1 = 'http://192.249.18.156:443/spacegame'
 const generateHTML = (pageName) => {
   return `
@@ -264,66 +259,50 @@ const generateHTML = (pageName) => {
 
 
 
-// userid에 해당하는 blocktable 불러와서 hostname으로 mapping
-let hostnameList = [
-  "www.facebook.com",
-  "www.netflix.com",
-  "www.roblox.com",
-  "discord.com",
-  "www.spotify.com"
-]
+chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
+  console.log(response.blocked);
+  if(response.blocked){
+    document.head.innerHTML = generateSTYLES();
+    document.body.innerHTML = generateHTML("This Page is Blocked");
+  }
+});
 
-// userid에 해당하는 blocktable 불러와서 blockedtime으로 mapping
-let blockedTList = [
-  30000, //30초
-  500000, //5분
-  300000, //3분
-  300000, //3분
-  300000, //3분
-]
-// userid에 해당하는 blocktable 불러와서 currenttime으로 mapping
-let usedTList = [
-  0, //30초
-  0, //5분
-  0, //3분
-  0, //3분
-  0, //3분
-]
 
-// const index = hostnameList.indexOf(window.location.hostname)
-// let timecnt = 0
-// if (index != -1){
-//   while(usedTList[index] < blockedTList[index]){
-//     // it is okay to run
-//     // in case of shutting down the window or moving to another url
-//     if()
-//   }
-//   document.head.i
+// (async () => {
+//   await new Promise((resolve) => {
+//   chrome.runtime.sendMessage(
+//     {hostname: window.location.hostname},
+//     (response)=>{
+//       resolve(response);
+//       console.log(response)
+//     })
+//   })
+//   // return data1
+// })();
+
+// switch (window.location.hostname) {
+//   case "www.youtube.com":
+//     //document.head.innerHTML = generateSTYLES();
+//     //document.body.innerHTML = generateHTML("YOUTUBE");
+//     break;
+//   case "www.facebook.com":
+//     document.head.innerHTML = generateSTYLES();
+//     document.body.innerHTML = generateHTML("FACEBOOK");
+//     break;
+//   case "www.netflix.com":
+//     document.head.innerHTML = generateSTYLES();
+//     document.body.innerHTML = generateHTML("NETFLIX");
+//     break;
+//   case "www.roblox.com":
+//     document.head.innerHTML = generateSTYLES();
+//     document.body.innerHTML = generateHTML("ROBLOX");
+//     break;
+//   case "discord.com":
+//     document.head.innerHTML = generateSTYLES();
+//     document.body.innerHTML = generateHTML("DISCORD");
+//     break;
+//   case "www.spotify.com":
+//     document.head.innerHTML = generateSTYLES();
+//     document.body.innerHTML = generateHTML("SPOTIFY");
+//     break;
 // }
-
-switch (window.location.hostname) {
-  case "www.youtube.com":
-    //document.head.innerHTML = generateSTYLES();
-    //document.body.innerHTML = generateHTML("YOUTUBE");
-    break;
-  case "www.facebook.com":
-    document.head.innerHTML = generateSTYLES();
-    document.body.innerHTML = generateHTML("FACEBOOK");
-    break;
-  case "www.netflix.com":
-    document.head.innerHTML = generateSTYLES();
-    document.body.innerHTML = generateHTML("NETFLIX");
-    break;
-  case "www.roblox.com":
-    document.head.innerHTML = generateSTYLES();
-    document.body.innerHTML = generateHTML("ROBLOX");
-    break;
-  case "discord.com":
-    document.head.innerHTML = generateSTYLES();
-    document.body.innerHTML = generateHTML("DISCORD");
-    break;
-  case "www.spotify.com":
-    document.head.innerHTML = generateSTYLES();
-    document.body.innerHTML = generateHTML("SPOTIFY");
-    break;
-}
