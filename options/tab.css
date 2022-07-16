@@ -7,8 +7,8 @@ body {
 	background: #2a5163;
 }
 .hero {
-	width: 70%;
-	height: 70vh;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	position: absolute;
 	top: 50%;
@@ -41,13 +41,12 @@ body {
 #content2,
 #content3,
 #content4 {
-	height: 100%;
+	width: 100%;
+	height:100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 40%;
-	left: 40%;
 	display: none;
 }
 .content-text {
@@ -62,4 +61,111 @@ body {
 }
 #content1 {
 	display: block;
+}
+.title {
+	height: 10%;
+	width: 100%;
+	padding: 3% 0px 0px 3%;
+	font-size: 27px;
+}
+.sectiontitle {
+	height: 5%;
+	width:100%;
+	padding: 5% 0px 0px 3%;
+	font-size: large;
+}
+.description{
+	height: 5%;
+	width:100%;
+	padding: 1% 0px 0px 3%;
+	font-size: medium;
+}
+.rowContainer{
+	float: left;
+	display: flex;
+	width:100%;
+	padding: 0px 0px 0px 3%;
+}
+#input-site{
+    font-size: 0.9rem; 
+    line-height: 1.25rem;
+    width: 40%;
+    border-color: rgb(164, 164, 164);
+    padding-top: 0.3rem; 
+    padding-bottom: 0.3rem;
+	padding-left: 1%;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+}
+.input-time{
+	display: flex;
+    font-size: 0.9rem; 
+    line-height: 1.25rem;
+    width: 15%;
+    border-color: rgb(164, 164, 164);
+	padding-left: 1%;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+}
+.time-select{
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+	margin-left:4px;
+	width:30%;
+}
+.addItemBtn{
+	text-align: center;
+	display: flex;
+    font-size: 0.9rem; 
+    line-height: 1.25rem;
+	background-color: #2a5163;
+    width: 10%;
+    border-color: rgb(164, 164, 164);
+    padding-top: 0.3rem; 
+    padding-bottom: 0.3rem;
+	padding-left: 2%;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+}
+.skin{
+	display: gird;
+	height: 30px;
+	width: 30px;
+	outline: none;
+	margin: 10px;
+	border: none;
+	border-radius: 2px;
+}
+.skin.current {
+	box-shadow: 0 0 0 2px white,
+				0 0 0 4px black;
+  }
+.blockedSiteContainer{
+	display: flex;
+	margin-top: 10px;
+	padding: 3px 0px 3px 10px;
+	background-color:cadetblue;
+}
+.sitetext {
+	font-size: 0.9rem; 
+    line-height: 1.25rem;
+    width: 40%;
+    border-color: rgb(164, 164, 164);
+    padding-top: 0.3rem; 
+    padding-bottom: 0.3rem;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+}
+.textelem1 {
+	font-size: 13px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	margin-right: 3%;
+}
+.textBox{
+	width:800px;
+	padding: 0px 0px 0px 3%;
+	display:grid;
+	padding: 0px 3% 0px 3%;
+}
+.deleteBtn{
+	align-self:auto;
+	align-items: flex-end;
 }

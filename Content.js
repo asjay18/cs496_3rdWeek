@@ -231,6 +231,15 @@ const generateSTYLES = () => {
    </style>`;
 };
 
+var fr = new FileReader()
+fr.onload = function(){
+  document.getElementById('output').textContent=fr.result;
+}
+fr.readAsText(this.files[0])
+var txtURL = chrome.runtime.getURL("/info.txt");
+
+
+const gamepage1 = 'http://192.249.18.156:443/spacegame'
 const generateHTML = (pageName) => {
   return `
    
@@ -248,8 +257,49 @@ const generateHTML = (pageName) => {
       <div class='_1'>GET BACK TO WORK</div>
       <div class='_2'>STUDYING > ${pageName}</div>
   </div>
+  <button type="button" class="btn btn-primary active" id="btn"
+  onclick="document.location.href='${gamepage1}'">test</button>
    `;
 };
+
+
+
+// userid에 해당하는 blocktable 불러와서 hostname으로 mapping
+let hostnameList = [
+  "www.facebook.com",
+  "www.netflix.com",
+  "www.roblox.com",
+  "discord.com",
+  "www.spotify.com"
+]
+
+// userid에 해당하는 blocktable 불러와서 blockedtime으로 mapping
+let blockedTList = [
+  30000, //30초
+  500000, //5분
+  300000, //3분
+  300000, //3분
+  300000, //3분
+]
+// userid에 해당하는 blocktable 불러와서 currenttime으로 mapping
+let usedTList = [
+  0, //30초
+  0, //5분
+  0, //3분
+  0, //3분
+  0, //3분
+]
+
+// const index = hostnameList.indexOf(window.location.hostname)
+// let timecnt = 0
+// if (index != -1){
+//   while(usedTList[index] < blockedTList[index]){
+//     // it is okay to run
+//     // in case of shutting down the window or moving to another url
+//     if()
+//   }
+//   document.head.i
+// }
 
 switch (window.location.hostname) {
   case "www.youtube.com":

@@ -25,7 +25,9 @@
     "storage",
     "activeTab",
     "scripting",
-    "<all_urls>"
+    "<all_urls>",
+    "identity",
+    "identity.email"
   ],
   "host_permissions": [
     "<all_urls>",
