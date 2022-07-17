@@ -17,18 +17,24 @@
         option.value = i; 
         option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
         df.appendChild(option); 
+        if(i===0){
+            var option = document.createElement('option'); 
+            option.value = 1; 
+            option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
+            df.appendChild(option); 
+        }
     }
     selectMinute.appendChild(df); 
   
-    var selectSec = document.getElementById('ss'), // get the select
-        df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-    for (var i = 0; i <= 50; i+=10) { 
-        var option = document.createElement('option'); 
-        option.value = i; 
-        option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
-        df.appendChild(option); 
-    }
-    selectSec.appendChild(df); 
+    // var selectSec = document.getElementById('ss'), // get the select
+    //     df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+    // for (var i = 0; i <= 50; i+=10) { 
+    //     var option = document.createElement('option'); 
+    //     option.value = i; 
+    //     option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
+    //     df.appendChild(option); 
+    // }
+    // selectSec.appendChild(df); 
   }()
 );
 
@@ -40,16 +46,14 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
     let addSiteText = document.getElementById('input-site')
     let addHourSelect = document.getElementById('hh')
     let addMinSelect = document.getElementById('mm')
-    let addSecSelect = document.getElementById('ss')
     let addItemBtn = document.getElementById('btn-addsite')
     const box = document.getElementById("blockedSiteBox")
     let saveButton = document.getElementById("saveButton")
 
-    function parseMillisec(hh, mm, ss){
+    function parseMillisec(hh, mm){
         let h=parseInt(hh)
         let m=parseInt(mm)
-        let s=parseInt(ss)
-        return (h*3600 + m*60 + s)*1000
+        return (h*3600 + m*60)*1000
     }
 
     let deleteBtnList=[]
@@ -63,7 +67,7 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
         for(site of siteList){
             let div = document.createElement('div')
             let sec = site.blocktime/1000
-            let time = `'${parseInt(sec/3600)}시간${parseInt((sec%3600)/60)}분${parseInt(sec%60)}초'`
+            let time = `'${parseInt(sec/3600)}시간${parseInt((sec%3600)/60)}분'`
             div.classList.add('blockedSiteContainer')
             div.innerHTML=`<div class=sitetext>${site.hostname}</div>
                             <div class=textelem1>제한시간: ${time}</div>
@@ -131,7 +135,7 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
         }
         let newsite = {
             "hostname": addSiteText.value,
-            "blocktime": parseMillisec(addHourSelect.value, addMinSelect.value, addSecSelect.value),
+            "blocktime": parseMillisec(addHourSelect.value, addMinSelect.value),
             "currenttime": 0,
             "isbroken": 0
         }

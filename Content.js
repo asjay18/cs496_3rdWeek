@@ -260,12 +260,49 @@ const generateHTML = (pageName) => {
 
 
 chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
+  // 처음 접속에서 blocked인지 확인
   console.log(response.blocked);
-  if(response.blocked){
+  if(response.blocked === "blocked"){
+    // 만약 blocked이면 blocked로 두면 됨
     document.head.innerHTML = generateSTYLES();
     document.body.innerHTML = generateHTML("This Page is Blocked");
   }
-});
+  else if(response.blocked === "not yet"){
+    // 아직 blocked가 아닌 경우, 인터벌마다 다시 bloked인지  확인함.
+
+    setTimeout(function run(){
+      chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
+        console.log(response.blocked);
+        if(response.blocked === "blocked"){
+          // 만약 blocked가 되면 timeout 지우고 blocked로 두기.
+          clearTimeout()  // TODO timeout 바꾸기
+          document.head.innerHTML = generateSTYLES();
+          document.body.innerHTML = generateHTML("This Page is Blocked");
+        }
+      })
+    setTimeout(run, 60000); // 1분 (60초) 마다
+    }, 60000);
+  }
+  else{
+    // 만약 blocked site가 아닌 경우 걍 아무 동작도 하지 않고 함수 끝냄.
+  }
+})
+
+
+
+// setInterval(() => {
+//   chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
+//     console.log(response.blocked);
+//     if(response.blocked){
+//       document.head.innerHTML = generateSTYLES();
+//       document.body.innerHTML = generateHTML("This Page is Blocked");
+//     }
+//     else{
+//       clearInterval(this)
+//     }
+//   }),
+//   3000
+// })
 
 
 // (async () => {
