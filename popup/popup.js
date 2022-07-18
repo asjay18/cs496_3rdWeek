@@ -25,8 +25,11 @@ changeColor.addEventListener("click", async () => {
 /**
  * @description 현재 웹 페이지의 Body 요소의 배경색을 변경해주는 함수
  **/
+
+
 function setPageBackgroundColor() {
   chrome.storage.sync.get("color", ({ color }) => {
     document.body.style.backgroundColor = color;
   });
+
 }

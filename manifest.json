@@ -9,7 +9,7 @@
       "js": ["Content.js"]
     }
   ],
-  "icons": { "48": "icon48.png", "128": "icon128.png" },
+  "icons": { "48": "10_icon_48.png", "128": "10_icon_128.png" },
   "action": {
     "default_popup": "./popup/Popup.html",
     "default_title": "Procrastination Blocker"
@@ -32,5 +32,11 @@
   "host_permissions": [
     "<all_urls>",
     "https://*/"
+  ],
+  "web_accessible_resources":[
+    {
+      "resources": [ "assets/40.png", "assets/49.png" ],
+      "matches": [ "https://web-accessible-resources-1.glitch.me/*" ]
+    }
   ]
 }

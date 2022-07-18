@@ -126,9 +126,9 @@ const generateHTML = (pageName) => {
       <body>
           <div class="top">
               <div class="center">
-                  <img src="49.png" class="center" alt="">
+                  <img id="img1" class="center">
                   <div class="edge">
-                      <img src="40.png" class="edge">
+                      <img id="img2" class="edge">
                   </div>
               </div>
           </div>
@@ -150,6 +150,20 @@ function gameBtnFunc(){
   document.location.href='http://192.249.18.156:443/spacegame'
 }
 
+function drawHTML(){
+  document.head.innerHTML = generateSTYLES();
+    document.body.innerHTML = generateHTML("This Page is Blocked");
+    const btn = document.getElementById("gameBtn")
+    btn.addEventListener('click',()=>{
+      gameBtnFunc()
+    })
+  const imgsrc1 = chrome.runtime.getURL("asset/49.png")
+  const imgsrc2 =  chrome.runtime.getURL("./asset/40.png")
+  document.getElementById("img1").src = imgsrc1
+  document.getElementById("img2").src = imgsrc2
+  console.log(document.getElementById("img1"))
+}
+
 
 chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: false}, (response) => {
   // 처음 접속에서 blocked인지 확인
@@ -157,12 +171,7 @@ chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: false}, 
   userid = response.userid
   if(response.blocked === "blocked"){
     // 만약 blocked이면 blocked로 두면 됨
-    document.head.innerHTML = generateSTYLES();
-    document.body.innerHTML = generateHTML("This Page is Blocked");
-    const btn = document.getElementById("gameBtn")
-      btn.addEventListener('click',()=>{
-        gameBtnFunc()
-      })
+    drawHTML()
   }
   else if(response.blocked === "not yet"){
     // 아직 blocked가 아닌 경우, 인터벌마다 다시 bloked인지  확인함.
@@ -173,12 +182,7 @@ chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: false}, 
         if(response.blocked === "blocked"){
           // 만약 blocked가 되면 timeout 지우고 blocked로 두기.
           clearTimeout()  // TODO timeout 바꾸기
-          document.head.innerHTML = generateSTYLES();
-          document.body.innerHTML = generateHTML("This Page is Blocked");
-          const btn = document.getElementById("gameBtn")
-          btn.addEventListener('click',()=>{
-            gameBtnFunc(response.userid)
-          })
+          drawHTML()
         }
       })
     setTimeout(run, 60000); // 1분 (60초) 마다

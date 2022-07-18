@@ -71,13 +71,9 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
             div.classList.add('blockedSiteContainer')
             div.innerHTML=`<div class=sitetext>${site.hostname}</div>
                             <div class=textelem1>제한시간: ${time}</div>
-                            <div class=textelem1>${site.point}일간 완주 중</div>
-                            <button class="btn btn-delete">
-                            <span class="mdi mdi-delete mdi-24px"></span>
-                            <span class="mdi mdi-delete-empty mdi-24px"></span>
-                            <span>Delete</span>
-                            </button>
-                            `
+                            <div class=textelem1>${site.point}일간 완주</div>
+                            <button class="deleteBtn" id="deleteBtn${i}">
+                            Delete</button>`
             box.appendChild(div)
             deleteBtnList.push(document.getElementById(`deleteBtn${i}`))
             i+=1

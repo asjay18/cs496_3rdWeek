@@ -8,6 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 
 chrome.identity.getProfileUserInfo(function(userinfo) {
+
   // =================== get userid ===================
   let userid
   userid = userinfo.id
