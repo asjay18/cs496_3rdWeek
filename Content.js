@@ -234,7 +234,7 @@ const generateSTYLES = () => {
    </style>`;
 };
 
-const gamepage1 = 'http://192.249.18.156:443/spacegame'
+
 const generateHTML = (pageName) => {
   return `
    
@@ -252,20 +252,30 @@ const generateHTML = (pageName) => {
       <div class='_1'>GET BACK TO WORK</div>
       <div class='_2'>STUDYING > ${pageName}</div>
   </div>
-  <button type="button" class="btn btn-primary active" id="btn"
-  onclick="document.location.href='${gamepage1}'">test</button>
+  <button type="button" class="btn btn-primary active" id="gameBtn">test</button>
    `;
 };
 
+function gameBtnFunc(){
+  chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: true}, (response) => {
+    console.log(response)
+  })
+  document.location.href='http://192.249.18.156:443/spacegame'
+}
 
 
-chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
+chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: false}, (response) => {
   // 처음 접속에서 blocked인지 확인
   console.log(response.blocked);
+  userid = response.userid
   if(response.blocked === "blocked"){
     // 만약 blocked이면 blocked로 두면 됨
     document.head.innerHTML = generateSTYLES();
     document.body.innerHTML = generateHTML("This Page is Blocked");
+    const btn = document.getElementById("gameBtn")
+      btn.addEventListener('click',()=>{
+        gameBtnFunc()
+      })
   }
   else if(response.blocked === "not yet"){
     // 아직 blocked가 아닌 경우, 인터벌마다 다시 bloked인지  확인함.
@@ -278,6 +288,10 @@ chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
           clearTimeout()  // TODO timeout 바꾸기
           document.head.innerHTML = generateSTYLES();
           document.body.innerHTML = generateHTML("This Page is Blocked");
+          const btn = document.getElementById("gameBtn")
+          btn.addEventListener('click',()=>{
+            gameBtnFunc(response.userid)
+          })
         }
       })
     setTimeout(run, 60000); // 1분 (60초) 마다
@@ -287,59 +301,3 @@ chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
     // 만약 blocked site가 아닌 경우 걍 아무 동작도 하지 않고 함수 끝냄.
   }
 })
-
-
-
-// setInterval(() => {
-//   chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
-//     console.log(response.blocked);
-//     if(response.blocked){
-//       document.head.innerHTML = generateSTYLES();
-//       document.body.innerHTML = generateHTML("This Page is Blocked");
-//     }
-//     else{
-//       clearInterval(this)
-//     }
-//   }),
-//   3000
-// })
-
-
-// (async () => {
-//   await new Promise((resolve) => {
-//   chrome.runtime.sendMessage(
-//     {hostname: window.location.hostname},
-//     (response)=>{
-//       resolve(response);
-//       console.log(response)
-//     })
-//   })
-//   // return data1
-// })();
-
-// switch (window.location.hostname) {
-//   case "www.youtube.com":
-//     //document.head.innerHTML = generateSTYLES();
-//     //document.body.innerHTML = generateHTML("YOUTUBE");
-//     break;
-//   case "www.facebook.com":
-//     document.head.innerHTML = generateSTYLES();
-//     document.body.innerHTML = generateHTML("FACEBOOK");
-//     break;
-//   case "www.netflix.com":
-//     document.head.innerHTML = generateSTYLES();
-//     document.body.innerHTML = generateHTML("NETFLIX");
-//     break;
-//   case "www.roblox.com":
-//     document.head.innerHTML = generateSTYLES();
-//     document.body.innerHTML = generateHTML("ROBLOX");
-//     break;
-//   case "discord.com":
-//     document.head.innerHTML = generateSTYLES();
-//     document.body.innerHTML = generateHTML("DISCORD");
-//     break;
-//   case "www.spotify.com":
-//     document.head.innerHTML = generateSTYLES();
-//     document.body.innerHTML = generateHTML("SPOTIFY");
-//     break;
-// }

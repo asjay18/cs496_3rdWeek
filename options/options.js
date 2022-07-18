@@ -67,12 +67,17 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
         for(site of siteList){
             let div = document.createElement('div')
             let sec = site.blocktime/1000
-            let time = `'${parseInt(sec/3600)}시간${parseInt((sec%3600)/60)}분'`
+            let time = `${parseInt(sec/3600)} 시간 ${parseInt((sec%3600)/60)} 분`
             div.classList.add('blockedSiteContainer')
             div.innerHTML=`<div class=sitetext>${site.hostname}</div>
                             <div class=textelem1>제한시간: ${time}</div>
-                            <button class="deleteBtn" id="deleteBtn${i}">
-                            cancelbtn</button>`
+                            <div class=textelem1>${site.point}일간 완주 중</div>
+                            <button class="btn btn-delete">
+                            <span class="mdi mdi-delete mdi-24px"></span>
+                            <span class="mdi mdi-delete-empty mdi-24px"></span>
+                            <span>Delete</span>
+                            </button>
+                            `
             box.appendChild(div)
             deleteBtnList.push(document.getElementById(`deleteBtn${i}`))
             i+=1
@@ -137,7 +142,8 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
             "hostname": addSiteText.value,
             "blocktime": parseMillisec(addHourSelect.value, addMinSelect.value),
             "currenttime": 0,
-            "isbroken": 0
+            "isbroken": 0,
+            "point":0
         }
         addSiteText.value = ""
         siteList.push(newsite)

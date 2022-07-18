@@ -87,6 +87,7 @@ body {
 	padding: 0px 0px 0px 3%;
 }
 #input-site{
+	display: flex;
     font-size: 0.9rem; 
     line-height: 1.25rem;
     width: 40%;
@@ -100,7 +101,7 @@ body {
 	display: flex;
     font-size: 0.9rem; 
     line-height: 1.25rem;
-    width: 15%;
+    width: 20%;
     border-color: rgb(164, 164, 164);
 	padding-left: 1%;
     border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
@@ -168,4 +169,5 @@ body {
 .deleteBtn{
 	align-self:auto;
 	align-items: flex-end;
+    background: url(imgs/icon.png) no-repeat;
 }
