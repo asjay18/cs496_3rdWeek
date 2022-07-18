@@ -13,9 +13,14 @@
     <body>
         <div class="hero">
             <div class="tabs">
-                <button class="btn1" id="tab1">STATUE OF UNITY</button>
-                <button class="btn1" id="tab2">STATUE OF UNITY2</button>
-                <button class="btn1" id="tab3">STATUE OF UNITY3</button>
+                <div id="tab0">
+                    <img id="tabTitleImg" src="../10_icon.png">
+                    <span id="titleSpace"></span>
+                    <span id="tabTitle"> TimeSaver</span>
+                </div>
+                <button class="btn1" id="tab1">차단 사이트 설정</button>
+                <button class="btn1" id="tab2">스크린 세이버 테마 설정</button>
+                <button class="btn1" id="tab3">게임 설명</button>
                 <button class="btn1" id="tab4">STATUE OF UNITY4</button>
             </div>
 
@@ -29,17 +34,19 @@
                                 <h1>TimeSaver</h1>
                             </div>
                             <div class="sectiontitle"><h2 id="title-addsite">Add Sites</h2></div>
-                            <div class="description">사이트를 제한 시간동안만 사용할 수 있도록 설정합니다</div>
+                            <div class="description">사이트를 제한 시간 동안만 사용할 수 있도록 설정합니다</div>
                             <!--차단사이트 설정 인풋 바-->
-                            <div class="rowContainer">
-                                <input id="input-site" type="text" placeholder="input website (ex: www.youtube.com)" value>
-                                <div class="input-time">
-                                    <select class='time-select' id="hh"></select>
-                                    <div class=textelem1>시간</div>
-                                    <select class='time-select'  id="mm"></select>
-                                    <div class=textelem1>분</div>
+                            <div class="description">
+                                <div class="rowContainer">
+                                    <input id="input-site" type="text" placeholder="input website (ex: www.youtube.com)" value>
+                                    <div class="input-time">
+                                        <select class='time-select' id="hh"></select>
+                                        <div class=textelem1>시간</div>
+                                        <select class='time-select'  id="mm"></select>
+                                        <div class=textelem1>분</div>
+                                    </div>
+                                    <button class="addItemBtn" id="btn-addsite">Add Item</button>
                                 </div>
-                                <button class="addItemBtn" id="btn-addsite">Add Item</button>
                             </div>
                             <div class="sectiontitle"><h2 id="title-blockedsite">Blocked Sites</h2></div>
                             <div class="textBox" id="blockedSiteBox">
@@ -52,9 +59,7 @@
                 <div id="content2">
                     <div class="content-text">
                         <p>         <!--페이지 메인2: select skin jaemo-->
-
-                        <div class="sectiontitle"><h2 id="title-selectskin">Select Skins</h2></div>
-
+                        <div class="title"><h1>Select Skins</h1></div>
                         <div class="rowContainer">
                             <p>배경색 변경</p>
                             <button id="addColor">배경색 추가</button>
@@ -69,7 +74,14 @@
                 </div>
                 <div id="content3">
                     <div class="content-text">
-                        <p>hi</p>
+                        <p>
+                            <div class="title"><h1>게임 설명</h1></div>
+                            <div class="description">설정해둔 사이트별 차단 시간이 지나 사이트에 접속하는 것이 막히면 게임을 플레이하여 하루 동안 잠금을 해제할 수 있습니다.</div>
+                            <div class="description">단, 이럴 시 완주 중 기록이 깨지게 됩니다.</div>
+                            <div class="sectiontitle1"><h2>Game 1: 슈팅 게임</h2></div>
+                            <div class="sectiontitle1"><h2>Game 2: 점프 게임</h2></div>
+                            <div class="sectiontitle1"><h2>Game 3: 새총 게임</h2></div>
+                        </p>
                     </div>
                 </div>
                 <div id="content4">
@@ -78,7 +90,8 @@
                         <p>hi</p>
                     </div>
                 </div>
-                </div>
+                
+            </div>
         </div>
     </body>
 </html>
