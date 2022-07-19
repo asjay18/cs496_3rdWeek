@@ -18,21 +18,21 @@ tab2.addEventListener("click", function(){loadtab(2)});
 tab3.addEventListener("click", function(){loadtab(3)});
 
 function loadtab(tab_number){
-	console.log(tab_number);
-  if (tab_number === last_tab) return;
-  last_content = document.getElementById("content" + last);
-  last_tab =  document.getElementById("tab" + last);
-  content = document.getElementById("content" + tab_number);
-  tab =  document.getElementById("tab" + tab_number);
+  console.log(tab_number);
+ if (tab_number === last_tab) return;
+ last_content = document.getElementById("content" + last);
+ last_tab =  document.getElementById("tab" + last);
+ content = document.getElementById("content" + tab_number);
+ tab =  document.getElementById("tab" + tab_number);
 
-  last_content.style.display = "none";
-  content.style.display = "block";
-  last_tab.style.background = "inherit";
-  tab.style.background = "white";
-  tab.style.color = "black";
-  last_tab.style.color = "white";
+ last_content.style.display = "none";
+ content.style.display = "block";
+ last_tab.style.background = "inherit";
+ tab.style.background = "#e1f4f5";
+ last_tab.style.color = "#e1f4f5";
+ tab.style.color = "#3c5c84";
 
-  last = tab_number;
+ last = tab_number;
 }
 
 

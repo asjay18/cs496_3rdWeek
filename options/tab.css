@@ -267,7 +267,7 @@ body {
 	padding: 1% 0px 0px 3%;
 	font-size: large;
 }
-<<<<<<< HEAD
+
 
 
 #colorInput {
@@ -331,7 +331,7 @@ body {
 }
 #themeBtn4{
 	background-image: url("../asset/skin_turntable.png");
-=======
+}
 .gameDescriptionImg{
 	margin-left: 3%;
 	margin-top: 1%;
@@ -343,5 +343,5 @@ body {
 	margin-top: -20.65vw;
 	margin-left: 38.5vw;
 	font-size: 15px;
->>>>>>> c3b4d7a843d582ef0393a0ea69883b6bc2eee770
+
 }
