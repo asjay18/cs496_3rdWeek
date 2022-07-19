@@ -22,6 +22,7 @@ body {
 	border: 0px solid transparent;
 	background-color: #50a8c5;
   	box-shadow: 0px 5px 0px 0px #4194af;
+	user-select: none;
 }
 #saveButton:hover{
 	background-color: #66b8d3;
@@ -40,6 +41,7 @@ body {
 	border: 0px solid transparent;
 	flex-basis: 20%;
 	background: #3c5c84;
+	user-select: none;
 }
 #tab0{
 	margin: 10px;
@@ -86,7 +88,7 @@ body {
 }
 #tab1 {
 	background: #e1f4f5;
-	color: #000;
+	color: #3c5c84;
 }
 
 .content-box {
@@ -104,7 +106,8 @@ body {
 	align-items: center;
 	position: absolute;
 	display: none;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 .content-text {
 	width: 100%;
@@ -124,22 +127,24 @@ body {
 	width: 100%;
 	padding: 2% 0px 0px 3%;
 	font-size: 27px;
+	user-select: none;
 }
 .sectiontitle {
 	width:100%;
 	padding: 4% 0px 0px 3%;
 	font-size: large;
+	user-select: none;
 }
 .description{
 	width:100%;
 	padding: 1% 0px 0px 3%;
 	font-size: medium;
+	user-select: none;
 }
 .rowContainer{
 	float: left;
 	display: flex;
 	width:100%;
-	height: 4.5%;
 }
 #input-site{
 	display: flex;
@@ -199,16 +204,23 @@ body {
 .skin.current {
 	box-shadow: 0 0 0 2px white,
 				0 0 0 4px black;
-  }
+}
 .blockedSiteContainer{
 	display: flex;
+	align-items: center;
+	height: 30px;
+    line-height: 30px;
+	align-items: center;
 	margin-top: 10px;
+	margin-left: 3%;
 	padding: 3px 0px 3px 10px;
-	background-color:cadetblue;
+	background-color:#93c1d1;
+	border-radius: 10px;
 }
 .sitetext {
 	font-size: 0.9rem; 
     line-height: 1.25rem;
+	height: 1.25rem;
     width: 40%;
     border-color: rgb(164, 164, 164);
     padding-top: 0.3rem; 
@@ -224,16 +236,24 @@ body {
 	margin-right: 3%;
 }
 .textBox{
-	width:800px;
-	padding: 0px 0px 0px 3%;
+	width:70%;
 	display:grid;
-	padding: 0px 3% 0px 3%;
+	padding: 10px 3% 10px 10px;
 }
 .deleteBtn{
-	align-self:auto;
-	align-items: flex-end;
+	position: absolute;
+	right: 30%;
+	text-align: center;
+	font-weight: 700;
+	color: black;
+    border-radius: 10px;
+	border: 3px solid #cf6047;
+	padding: 0.2rem 0.5rem 0.2rem 0.5rem; 
+	background-color: #ed6c4e;
 }
-/*tab2*/
+.deleteBtn:hover{
+	background-color: #f07b61;
+}
 /* tab3 */
 .sectiontitle1 {
 	width:100%;

@@ -31,9 +31,9 @@ function loadtab(tab_number){
   last_content.style.display = "none";
   content.style.display = "block";
   last_tab.style.background = "inherit";
-  tab.style.background = "white";
-  tab.style.color = "black";
-  last_tab.style.color = "white";
+  tab.style.background = "#e1f4f5";
+  last_tab.style.color = "#e1f4f5";
+  tab.style.color = "#3c5c84";
 
   last = tab_number;
 }
