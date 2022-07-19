@@ -7,6 +7,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 
+const GAMEHOST = "192.249.18.156"
 chrome.identity.getProfileUserInfo(function(userinfo) {
 
   // =================== get userid ===================
@@ -49,15 +50,23 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
       (request, sender, sendResponse) => {
         if(request.isgame){ // 게임접속 메시지일 경우
           let index = hostnamelist.indexOf(request.hostname)
-          userInfo.sites[index].isbroken = 2  // tried!
-          jsonObj = {"userid":userid, "data": userInfo}
-          changeInfo(jsonObj) // 서버에 업데이트
-          sendResponse({'msg': "user tried game"});
+          if(userInfo.sites[index].isbroken == 2){
+            // 이미 한 번 시도했었던 경우
+            sendResponse({"userid":userid, blocked: "game blocked" });
+          }
+          else{
+            userInfo.sites[index].isbroken = 2          // tried!
+            userInfo.gaming.hostname = request.hostname // 현재 깨려고 시도중인 사이트
+            userInfo.gaming.startat = Date.now()        // 게임 시작한 시간
+            jsonObj = {"userid":userid, "data": userInfo}
+            changeInfo(jsonObj) // 서버에 업데이트
+            sendResponse({"userid":userid, blocked: "gaming" });
+          }
         }
         else{               //아닐 경우
           isblocked = "not blocked";
           let index = hostnamelist.indexOf(request.hostname)
-        
+
           if(index === -1){   
             // block 대상이 아닌 경우
             sendResponse({"userid":userid, blocked: "not blocked" });

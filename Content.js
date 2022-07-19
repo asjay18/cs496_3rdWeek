@@ -350,9 +350,15 @@ const generateHTML = (pageName) => {
 
 function gameBtnFunc(){
   chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: true}, (response) => {
-    console.log(response)
+    if(response.blocked == "gaming"){
+      document.location.href = `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=60000` //1분 안에 통과해야 함
+    }
+    else{
+      alert("오늘은 더 이상 게임을 시도할 수 없습니다.")
+      document.location.href= `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=60000` //1분 안에 통과해야 함
+      // should remove after debugging!!
+    }
   })
-  document.location.href='http://192.249.18.156:443/spacegame'
 }
 
 function drawHTML(){
@@ -372,6 +378,8 @@ function drawHTML(){
 
 chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: false}, (response) => {
   // 처음 접속에서 blocked인지 확인
+  
+  console.log(window.location.hostname)
   console.log(response.blocked);
   userid = response.userid
   if(response.blocked === "blocked"){
