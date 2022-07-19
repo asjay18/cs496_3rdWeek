@@ -19,7 +19,6 @@
                 <button class="btn1" id="tab1">차단 사이트 설정</button>
                 <button class="btn1" id="tab2">스크린 세이버 테마 설정</button>
                 <button class="btn1" id="tab3">게임 설명</button>
-                <button class="btn1" id="tab4">STATUE OF UNITY4</button>
             </div>
 
             <div class="content-box">
@@ -46,7 +45,7 @@
                                     <button class="addItemBtn" id="btn-addsite">Add Item</button>
                                 </div>
                             </div>
-                            <div class="sectiontitle"><h2 id="title-blockedsite">Blocked Sites</h2></div>
+                            <div class="sectiontitle2"><h2 id="title-blockedsite">Blocked Sites</h2></div>
                             <div class="textBox" id="blockedSiteBox">
                                 <button class="deleteBtn"></button>
                             </div>
@@ -58,19 +57,24 @@
                     <div class="content-text">
                     <!--페이지 메인2: select skin jaemo-->
                         <div class="title"><h1>Select Skins</h1></div>
-                        <div class="description">
-                            <div class="rowContainer">
-                                <p class="textelem1">배경색상</p>
-                                <button id="addColor">배경색 추가</button>
-                            </div>
-                            <div id="colorBox">
-                                <label> Color &nbsp;<input type="color" id="colorInput"></label>
-                            </div>
+                        <div class="sectiontitle"><h2 id="title-addsite">배경 색상</h2></div>
+                        <div class="description">아래 색깔 바를 이용해 원하는 색깔을 선택하세요. 팝업 버튼으로 설정한 색깔을 입힐 수 있습니다.</div> 
+                            
+                        <div class="rowcontainer" id="colorBox">
+                            <input type="color" id="colorInput">
+                            <button id="addColorBtn">OK!</button>
+                        </div>
 
-                            <div class="rowContainer">
-                                <p class="textelem1">스킨 선택</p>
-                            </div>
-                        </div> 
+                        <div class="sectiontitle2"><h2 id="title-addsite">테마</h2></div>
+                        <div class="description">원하는 테마를 선택하세요. 선택된 테마는 스크린세이버에 반영됩니다.</div> 
+                        
+                        <div class="rowcontainer" id="colorBox">
+                            <button class="themeBtn" id="themeBtn1"></button>
+                            <button class="themeBtn" id="themeBtn2"></button>
+                            <button class="themeBtn" id="themeBtn3"></button>
+                            <button class="themeBtn" id="themeBtn4"></button>
+                        </div>
+
                     </div>
                 </div>
                 <div id="content3">
