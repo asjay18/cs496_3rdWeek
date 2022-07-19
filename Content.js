@@ -1,5 +1,74 @@
+const earth = `.center{
+  position: absolute;
+  background-color: #39beff;
+  width: 30vh;
+  height: 30vh;
+  border-radius: 30vh;
+  overflow: hidden;
+}
+.con{
+  background-color: #238f35;
+}
+.sea{
+  background-color: #39beff;
+}
+#c0{
+  border-radius: 29% 44% 100% 0% / 43% 75% 51% 41% ;
+  margin-top: -1px;
+  width: 15vh;
+  height: 15vh;
+}
+#c1{
+  border-radius:35% 100% 100% 100% / 53% 74% 41% 0% ;
+  width: 25vh;
+  height: 25vh;
+  margin-top: 8vh;
+  margin-left: 3vh;
+}
+#c2{
+  border-radius:100% 83% 100% 78% / 69% 95% 21% 74%  ;
+  width: 15vh;
+  height: 10vh;
+  margin-top: -28vh;
+  margin-left: 1vh;
+}
+#s0{
+  border-radius: 100% 83% 100% 78% / 69% 95% 21% 74% ;
+  width: 20vh;
+  height: 10vh;
+  margin-top: -13.2vh;
+  margin-left: 15.4vh;
+}
+#c3{
+  border-radius: 100% 83% 100% 78% / 69% 95% 21% 74% ;
+  width: 20vh;
+  height: 20vh;
+  margin-top: -28vh;
+  margin-left: 23.9vh;
+}
+
+
+.orbit{
+  position: absolute;
+  background-color: #ff009500;
+  width: 55vh;
+  height: 55vh;
+  border-radius: 55vh;
+  
+  display: flex;
+  align-items: center;
+  animation: spin-right 30s linear infinite;
+}
+@keyframes spin-right {
+  100%{
+      transform: rotate(360deg);
+  }
+} `
+
 // contentscript.js
-const css = [`.center{
+const css = [
+  /* 턴테이블 ver 0*/ 
+  `.center{
   position: absolute;
   background-color: #414141;
   width: 30vh;
@@ -98,75 +167,37 @@ const css = [`.center{
   margin-top: -14vh;
 } `
 ,
-/* 지구ver */
-`.center{
-  position: absolute;
-  background-color: #39beff;
-  width: 30vh;
-  height: 30vh;
-  border-radius: 30vh;
-  overflow: hidden;
+/* heart */
+`${earth}
+#edge1 {
+    position: relative;
+    width: 10vh;
+    height: 9vh;
+    rotate: -90deg;
+    margin-left: 4vh;
 }
-.con{
-  background-color: #238f35;
+#edge1:before,
+#edge1:after {
+    position: absolute;
+    content: "";
+    left: 5vh;
+    top: 0;
+    width: 5vh;
+    height: 8vh;
+    background: red;
+    border-radius: 5vh 5vh 0 0;
+    transform: rotate(-135deg);
+    transform-origin: 0 100%;
 }
-.sea{
-  background-color: #39beff;
-}
-#c0{
-  border-radius: 29% 44% 100% 0% / 43% 75% 51% 41% ;
-  margin-top: -1px;
-  width: 15vh;
-  height: 15vh;
-}
-#c1{
-  border-radius:35% 100% 100% 100% / 53% 74% 41% 0% ;
-  width: 25vh;
-  height: 25vh;
-  margin-top: 8vh;
-  margin-left: 3vh;
-}
-#c2{
-  border-radius:100% 83% 100% 78% / 69% 95% 21% 74%  ;
-  width: 15vh;
-  height: 10vh;
-  margin-top: -28vh;
-  margin-left: 1vh;
-}
-#s0{
-  border-radius: 100% 83% 100% 78% / 69% 95% 21% 74% ;
-  width: 20vh;
-  height: 10vh;
-  margin-top: -13.2vh;
-  margin-left: 15.4vh;
-}
-#c3{
-  border-radius: 100% 83% 100% 78% / 69% 95% 21% 74% ;
-  width: 20vh;
-  height: 20vh;
-  margin-top: -28vh;
-  margin-left: 23.9vh;
-}
-
-
-.orbit{
-  position: absolute;
-  background-color: #ff009500;
-  width: 55vh;
-  height: 55vh;
-  border-radius: 55vh;
-  
-  display: flex;
-  align-items: center;
-  animation: spin-right 30s linear infinite;
-}
-@keyframes spin-right {
-  100%{
-      transform: rotate(360deg);
-  }
-} `, 
-/* tree */
-` #edge1{
+#edge1:after {
+    left: 0;
+    transform: rotate(-45deg);
+    transform-origin: 100% 100%;
+}`
+, 
+/* tree 2*/
+`${earth} 
+#edge1{
   background-color: #116b20;
   width: 8vh;
   height: 8vh;
@@ -179,35 +210,10 @@ const css = [`.center{
   border-top: 2vh solid transparent;
   border-bottom: 2vh solid transparent;
   border-right: 9vh solid #4e3728;
-} */
-/* heart */
-/* #edge1 {
-  position: relative;
-  width: 10vh;
-  height: 9vh;
-  rotate: -90deg;
-  margin-left: 4vh;
-}
-#edge1:before,
-#edge1:after {
-  position: absolute;
-  content: "";
-  left: 5vh;
-  top: 0;
-  width: 5vh;
-  height: 8vh;
-  background: red;
-  border-radius: 5vh 5vh 0 0;
-  transform: rotate(-135deg);
-  transform-origin: 0 100%;
-}
-#edge1:after {
-  left: 0;
-  transform: rotate(-45deg);
-  transform-origin: 100% 100%;
 } `,
-/* moon */
-` #edge1 {
+/* moon 3*/
+`${earth} 
+#edge1 {
   margin-left: -2vh;
   width: 8vh;
   height: 8vh;
@@ -235,7 +241,7 @@ const generateSTYLES = () => {
     margin-top: 2vh;
 }
 
-${css[1]}
+${css[2]}
 
 .bottom {
     text-align: center;
@@ -350,12 +356,12 @@ const generateHTML = (pageName) => {
 
 function gameBtnFunc(){
   chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: true}, (response) => {
-    if(response.blocked == "gaming"){
-      document.location.href = `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=60000` //1분 안에 통과해야 함
+    if(response.blocked == "game blocked"){
+      alert("오늘은 더 이상 게임을 시도할 수 없습니다.")
+      document.location.href = `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=60000` // 1분 안에 통과해야 함
     }
     else{
-      alert("오늘은 더 이상 게임을 시도할 수 없습니다.")
-      document.location.href= `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=60000` //1분 안에 통과해야 함
+      document.location.href= `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=60000` // 1분 안에 통과해야 함
       // should remove after debugging!!
     }
   })

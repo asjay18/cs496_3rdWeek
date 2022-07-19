@@ -56,8 +56,6 @@ chrome.identity.getProfileUserInfo(function(userinfo) {
           }
           else{
             userInfo.sites[index].isbroken = 2          // tried!
-            userInfo.gaming.hostname = request.hostname // 현재 깨려고 시도중인 사이트
-            userInfo.gaming.startat = Date.now()        // 게임 시작한 시간
             jsonObj = {"userid":userid, "data": userInfo}
             changeInfo(jsonObj) // 서버에 업데이트
             sendResponse({"userid":userid, blocked: "gaming" });
