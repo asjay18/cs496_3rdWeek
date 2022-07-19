@@ -1,6 +1,6 @@
 
 // =========== Global params ==================
-let color = '#3aa757';
+let color = '#15095c';
 let userid
 let userInfo
 let hostnamelist
@@ -28,6 +28,7 @@ function getInfo(jsonObj){
   .then(jsondata => {
     userInfo = jsondata
     hostnamelist = userInfo.sites.map(x => x.hostname)
+    console.log(jsondata)
   })
 }
 
@@ -68,13 +69,13 @@ function onMessageListener(request, sender, sendResponse){
     let index = hostnamelist.indexOf(request.hostname)
     if(userInfo.sites[index].isbroken == 2){
       // 이미 한 번 시도했었던 경우
-      sendResponse({"userid":userid, blocked: "game blocked" });
+      sendResponse({"userid":userid, blocked: "game blocked" , "theme":userInfo.skin.theme});
     }
     else{
       userInfo.sites[index].isbroken = 2          // tried!
       jsonObj = {"userid":userid, "data": userInfo}
       changeInfo(jsonObj) // 서버에 업데이트
-      sendResponse({"userid":userid, blocked: "gaming" });
+      sendResponse({"userid":userid, blocked: "gaming" , "theme":userInfo.skin.theme});
     }
   }
 
@@ -82,18 +83,18 @@ function onMessageListener(request, sender, sendResponse){
     let index = hostnamelist.indexOf(request.hostname)
 
     if(index === -1)   // block 대상이 아닌 경우
-      sendResponse({"userid":userid, blocked: "not blocked" });
+      sendResponse({"userid":userid, blocked: "not blocked" , "theme":userInfo.skin.theme});
     else{
       timeticker = userInfo.sites[index].currenttime
       if(userInfo.sites[index].isbroken === 1){ // 게임 깬 경우
-        sendResponse({"userid":userid, blocked: "not blocked" });
+        sendResponse({"userid":userid, blocked: "not blocked" , "theme":userInfo.skin.theme});
       }
       else if(timeticker >= userInfo.sites[index].blocktime){
         // 사용시간 소진
         userInfo.sites[index].currenttime = userInfo.sites[index].blocktime;
         // jsonObj = {"userid":userid, "data": userInfo}
         // changeInfo(jsonObj) // 서버에 업데이트
-        sendResponse({"userid":userid, blocked: "blocked" });
+        sendResponse({"userid":userid, blocked: "blocked" , "theme":userInfo.skin.theme});
       }
       else if(timeticker < userInfo.sites[index].blocktime){
         // 아직 사용해도 됨
@@ -101,7 +102,7 @@ function onMessageListener(request, sender, sendResponse){
         userInfo.sites[index].currenttime = timeticker
         jsonObj = {"userid":userid, "data": userInfo}
         changeInfo(jsonObj) // 서버에 업데이트
-        sendResponse({"userid":userid, blocked: "not yet" });
+        sendResponse({"userid":userid, blocked: "not yet" , "theme":userInfo.skin.theme});
       }
     }
   }

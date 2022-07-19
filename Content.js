@@ -67,8 +67,61 @@ const earth = `.center{
 
 // contentscript.js
 const css = [
-  /* 턴테이블 ver 0*/ 
-  `.center{
+/* heart */
+`${earth}
+#edge1 {
+    position: relative;
+    width: 10vh;
+    height: 9vh;
+    rotate: -90deg;
+    margin-left: 4vh;
+}
+#edge1:before,
+#edge1:after {
+    position: absolute;
+    content: "";
+    left: 5vh;
+    top: 0;
+    width: 5vh;
+    height: 8vh;
+    background: red;
+    border-radius: 5vh 5vh 0 0;
+    transform: rotate(-135deg);
+    transform-origin: 0 100%;
+}
+#edge1:after {
+    left: 0;
+    transform: rotate(-45deg);
+    transform-origin: 100% 100%;
+}`
+, 
+/* moon 3*/
+`${earth} 
+#edge1 {
+  margin-left: -2vh;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50%;
+  box-shadow: 2vh 2vh 0 0 rgb(255, 238, 0);
+} `,
+/* tree 2*/
+`${earth} 
+#edge1{
+  background-color: #116b20;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 8vh;
+}
+#edge2{
+  margin-left: -4vh;
+  width: 0;
+  height: 0;
+  border-top: 2vh solid transparent;
+  border-bottom: 2vh solid transparent;
+  border-right: 9vh solid #4e3728;
+} `,
+/* 턴테이블 ver 3*/ 
+`.center{
   position: absolute;
   background-color: #414141;
   width: 30vh;
@@ -166,63 +219,10 @@ const css = [
   margin-left: -9.5vh;
   margin-top: -14vh;
 } `
-,
-/* heart */
-`${earth}
-#edge1 {
-    position: relative;
-    width: 10vh;
-    height: 9vh;
-    rotate: -90deg;
-    margin-left: 4vh;
-}
-#edge1:before,
-#edge1:after {
-    position: absolute;
-    content: "";
-    left: 5vh;
-    top: 0;
-    width: 5vh;
-    height: 8vh;
-    background: red;
-    border-radius: 5vh 5vh 0 0;
-    transform: rotate(-135deg);
-    transform-origin: 0 100%;
-}
-#edge1:after {
-    left: 0;
-    transform: rotate(-45deg);
-    transform-origin: 100% 100%;
-}`
-, 
-/* tree 2*/
-`${earth} 
-#edge1{
-  background-color: #116b20;
-  width: 8vh;
-  height: 8vh;
-  border-radius: 8vh;
-}
-#edge2{
-  margin-left: -4vh;
-  width: 0;
-  height: 0;
-  border-top: 2vh solid transparent;
-  border-bottom: 2vh solid transparent;
-  border-right: 9vh solid #4e3728;
-} `,
-/* moon 3*/
-`${earth} 
-#edge1 {
-  margin-left: -2vh;
-  width: 8vh;
-  height: 8vh;
-  border-radius: 50%;
-  box-shadow: 2vh 2vh 0 0 rgb(255, 238, 0);
-}  `]
+]
 
 
-const generateSTYLES = () => {
+const generateSTYLES = (theme) => {
   return `<style>@import url(https://fonts.googleapis.com/css?family=opensans:500);
   body {
     background: #15095c;
@@ -241,7 +241,7 @@ const generateSTYLES = () => {
     margin-top: 2vh;
 }
 
-${css[2]}
+${css[theme]}
 
 .bottom {
     text-align: center;
@@ -367,18 +367,13 @@ function gameBtnFunc(){
   })
 }
 
-function drawHTML(){
-  document.head.innerHTML = generateSTYLES();
+function drawHTML(theme){
+  document.head.innerHTML = generateSTYLES(theme);
     document.body.innerHTML = generateHTML("This Page is Blocked");
     const btn = document.getElementById("gameBtn")
     btn.addEventListener('click',()=>{
       gameBtnFunc()
     })
-  const imgsrc1 = chrome.runtime.getURL("asset/49.png")
-  const imgsrc2 =  chrome.runtime.getURL("./asset/40.png")
-  document.getElementById("img1").src = imgsrc1
-  document.getElementById("img2").src = imgsrc2
-  console.log(document.getElementById("img1"))
 }
 
 
@@ -392,7 +387,8 @@ if(window.location.hostname!==GAMEHOST){
     userid = response.userid
     if(response.blocked === "blocked"){
       // 만약 blocked이면 blocked로 두면 됨
-      drawHTML()
+      let theme = response.theme
+      drawHTML(theme)
     }
     else if(response.blocked === "not yet"){
       // 아직 blocked가 아닌 경우, 인터벌마다 다시 bloked인지  확인함.
@@ -403,7 +399,8 @@ if(window.location.hostname!==GAMEHOST){
           if(response.blocked === "blocked"){
             // 만약 blocked가 되면 timeout 지우고 blocked로 두기.
             clearTimeout()  // TODO timeout 바꾸기
-            drawHTML()
+            let theme = response.theme
+            drawHTML(theme)
           }
         })
       setTimeout(run, 60000); // 1분 (60초) 마다
