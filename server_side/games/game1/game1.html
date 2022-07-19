@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Game1</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="game1.css">
+    </head>
+    <body>
+
+        <div class="intro">
+            <div class="splashes">
+                <img class="splashAnimation" id="imgspaceship" src="assets/spaceship.png">
+                <div class="splashAnimation" id="circle"></div>
+            </div>
+        </div>
+        <header>
+            <div class="scoreBoard">
+                <span>Score:</span>
+                <span id="scoreEL">0</span>
+            </div>
+            <div class="restartUi" id="modalEl">
+                <div class="restartUi-1">
+                    <h1 class="bigScoreEl" id="bigScoreEl">0</h1>
+                    <p class="pointsText" id="explain">공부하러 돌아가세요!</p>
+                    <p class="pointsText">Points</p>
+                    <div>
+                        <button class="startButton" id="startButton">Start Game</button>
+                    </div>
+                </div>
+                
+            </div>
+
+
+            <!-- 개발자모드 -->
+            <button class="developerButton" id="dmBtn">Developer Mode</button>
+            <!-- 개발자모드 -->
+            
+            <canvas>
+                <audio preload="auto" id="audio_playo24" loop>
+                    <source src="./assets/HeatleyBros - HeatleyBros VI - 8 Bit Go.mp3" type="audio/mp3" />
+                </audio>
+            </canvas>
+        </header>       
+    </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="game1.js"></script>

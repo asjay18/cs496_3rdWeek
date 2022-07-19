@@ -333,15 +333,17 @@ body {
 	background-image: url("../asset/skin_turntable.png");
 }
 .gameDescriptionImg{
-	margin-left: 3%;
-	margin-top: 1%;
-	width: 35vw;
+	margin-left: 30px;
+	margin-top: 10px;
+	width: 430px;
+	height: 250px;
 }
 .gameDescription{
-	width: 39vw;
-	height: 20.65vw;
-	margin-top: -20.65vw;
-	margin-left: 38.5vw;
+	overflow-y: auto;
+	height: 250px;
+	width: 720px;
+	margin-top: -250px;
+	margin-left: 480px;
+	margin-right: 20px;
 	font-size: 15px;
-
 }

@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    font-family: sans-serif;
+}
+
+#info {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    border: 1px solid;
+    text-align: center;
+    color: white;
+}
+
+#info h1 {
+    padding: 10px;
+    color: black;
+    background-color: white;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    border: 0;
+}
+
+hr {
+    border-color: white;
+}
+
+.developerButton{
+    width: 10rem;
+    bottom: 1rem; /* 16px */
+    right: 1rem; /* 16px */
+    background-color: rgb(81, 81, 81);
+    border-color: rgb(81, 81, 81);
+    color: rgb(255 255 255);
+    position: fixed;
+    padding-left: 1rem; /* 16px */
+    padding-right: 1rem; /* 16px */
+    padding-top: 0.75rem; /* 12px */
+    padding-bottom: 0.75rem; /* 12px */
+    border-radius: 9999px;
+}
+
+/* splash */
+
+.intro{
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(39, 46, 114);
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#imghelicopter{
+    opacity: 0;
+    width: 20vw;
+    object-fit: cover;
+}
+#imgcustommycircle{
+    opacity: 1;
+    width: 2vw;
+    height: 2vw;
+}
+
+.splashAnimation#imghelicopter{
+    animation: fly 6s ease-out;
+}
+@keyframes fly {
+    0% {
+        opacity: 1;
+        transform: translate(60vw,0px);
+    }
+    35% {
+        transform: translate(-25vw,0px);
+    }
+    40%{
+        transform: translate(-25vw,3vh);
+    }
+    45%{
+        transform: translate(-25vw,0px);
+    }
+    50%{
+        transform: translate(-25vw,3vh);
+    }
+    55% {
+        transform: translate(-25vw,0vw);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-25vw,-60vw);
+    }
+}

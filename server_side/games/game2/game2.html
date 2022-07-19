@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Game2</title>
+        <link rel="stylesheet" href="game2.css">
+    </head>
+    <body>
+        <!-- <embed src="/img/HeatleyBros_8_Bit_Adventure.mp3" loop="true" autostart="true" width="2" height="0"> -->
+        <div class="intro">
+            <div class="splashes">
+                <div class="splashAnimation" id="ufolight"></div>
+                <img class="splashAnimation" id="imgufo" src="img/ufo.png">
+                <div class="splashAnimation" id="circle"></div>
+            </div>
+        </div>
+        <style>
+            body{
+                margin : 0;
+                background-color:rgb(95, 160, 101);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height:100vmin;
+            }
+        </style>
+
+        <div class="scoreBoard">
+            <span>Meter: </span><span id="meterEl">0</span>
+        </div>
+
+        <div class = "restartUi" id="modalEl">
+            <div class="restartUi-1">
+                <h1 class="bigScoreEl" id="finalmeter">0</h1>
+                
+                <p class="pointsText" id="explain">이제 공부하러 돌아가세요!</p>
+                <p class="pointsText">Meters</p>
+                <div>
+                    <button class="startButton" id="startGameBtn">Start Game</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 개발자모드 -->
+        <button class="developerButton" id="dmBtn">Developer Mode</button>
+        <!-- 개발자모드 -->
+        <audio preload="auto" id="audio_playo24" loop>
+            <source src="./img/HeatleyBros - HeatleyBros II - 06 8 Bit Adventure.mp3" type="audio/mp3" />
+        </audio>
+
+        <canvas id="Mycanvas"></canvas>
+        
+    </body>
+</html>
+<script src="./game2.js"></script>
