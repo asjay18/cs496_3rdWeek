@@ -1,4 +1,3 @@
-
 (function() { // don't leak
     var selectHour = document.getElementById('hh'), // get the select
         df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
@@ -25,16 +24,6 @@
         }
     }
     selectMinute.appendChild(df); 
-  
-    // var selectSec = document.getElementById('ss'), // get the select
-    //     df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
-    // for (var i = 0; i <= 50; i+=10) { 
-    //     var option = document.createElement('option'); 
-    //     option.value = i; 
-    //     option.appendChild(document.createTextNode(option.value.padStart(2,'0'))); // set the textContent in a safe way.
-    //     df.appendChild(option); 
-    // }
-    // selectSec.appendChild(df); 
   }()
 );
 

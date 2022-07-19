@@ -382,32 +382,35 @@ function drawHTML(){
 }
 
 
-chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: false}, (response) => {
-  // 처음 접속에서 blocked인지 확인
-  
-  console.log(window.location.hostname)
-  console.log(response.blocked);
-  userid = response.userid
-  if(response.blocked === "blocked"){
-    // 만약 blocked이면 blocked로 두면 됨
-    drawHTML()
-  }
-  else if(response.blocked === "not yet"){
-    // 아직 blocked가 아닌 경우, 인터벌마다 다시 bloked인지  확인함.
+const GAMEHOST = "192.249.18.156"
+if(window.location.hostname!==GAMEHOST){
+  chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: false}, (response) => {
+    // 처음 접속에서 blocked인지 확인
+    
+    console.log(window.location.hostname)
+    console.log(response.blocked);
+    userid = response.userid
+    if(response.blocked === "blocked"){
+      // 만약 blocked이면 blocked로 두면 됨
+      drawHTML()
+    }
+    else if(response.blocked === "not yet"){
+      // 아직 blocked가 아닌 경우, 인터벌마다 다시 bloked인지  확인함.
 
-    setTimeout(function run(){
-      chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
-        console.log(response.blocked);
-        if(response.blocked === "blocked"){
-          // 만약 blocked가 되면 timeout 지우고 blocked로 두기.
-          clearTimeout()  // TODO timeout 바꾸기
-          drawHTML()
-        }
-      })
-    setTimeout(run, 60000); // 1분 (60초) 마다
-    }, 60000);
-  }
-  else{
-    // 만약 blocked site가 아닌 경우 걍 아무 동작도 하지 않고 함수 끝냄.
-  }
-})
+      setTimeout(function run(){
+        chrome.runtime.sendMessage({hostname: window.location.hostname}, (response) => {
+          console.log(response.blocked);
+          if(response.blocked === "blocked"){
+            // 만약 blocked가 되면 timeout 지우고 blocked로 두기.
+            clearTimeout()  // TODO timeout 바꾸기
+            drawHTML()
+          }
+        })
+      setTimeout(run, 60000); // 1분 (60초) 마다
+      }, 60000);
+    }
+    else{
+      // 만약 blocked site가 아닌 경우 걍 아무 동작도 하지 않고 함수 끝냄.
+    }
+  })
+}
