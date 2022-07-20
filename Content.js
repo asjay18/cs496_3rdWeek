@@ -403,8 +403,8 @@ if(window.location.hostname!==GAMEHOST){
             drawHTML(theme)
           }
         })
-      setTimeout(run, 60000); // 1분 (60초) 마다
-      }, 60000);
+      setTimeout(run, 30000); // 1분 (60초) 마다
+      }, 30000);
     }
     else{
       // 만약 blocked site가 아닌 경우 걍 아무 동작도 하지 않고 함수 끝냄.

@@ -89,20 +89,21 @@ function onMessageListener(request, sender, sendResponse){
       if(userInfo.sites[index].isbroken === 1){ // 게임 깬 경우
         sendResponse({"userid":userid, blocked: "not blocked" , "theme":userInfo.skin.theme});
       }
-      else if(timeticker >= userInfo.sites[index].blocktime){
+      else if(userInfo.sites[index].currenttime >= userInfo.sites[index].blocktime){
         // 사용시간 소진
         userInfo.sites[index].currenttime = userInfo.sites[index].blocktime;
         // jsonObj = {"userid":userid, "data": userInfo}
         // changeInfo(jsonObj) // 서버에 업데이트
         sendResponse({"userid":userid, blocked: "blocked" , "theme":userInfo.skin.theme});
       }
-      else if(timeticker < userInfo.sites[index].blocktime){
+      else if(userInfo.sites[index].currenttime < userInfo.sites[index].blocktime){
         // 아직 사용해도 됨
-        timeticker += 60000; // content에서 불리는 시간만큼 더해줌 (1분씩)
-        userInfo.sites[index].currenttime = timeticker
+        
+        sendResponse({"userid":userid, blocked: "not yet" , "theme":userInfo.skin.theme});
+        userInfo.sites[index].currenttime += 30000; // content에서 불리는 시간만큼 더해줌 (1분씩)
         jsonObj = {"userid":userid, "data": userInfo}
         changeInfo(jsonObj) // 서버에 업데이트
-        sendResponse({"userid":userid, blocked: "not yet" , "theme":userInfo.skin.theme});
+        // sendResponse({"userid":userid, blocked: "not yet" , "theme":userInfo.skin.theme});
       }
     }
   }
@@ -124,7 +125,7 @@ function onTabRemovedListener(tabId, removeInfo){
   
   let i = hostnamelist.indexOf(tabhostname)
   if(i !== -1){  // 만약 blocked hostname에 있으면
-    userInfo.sites[index].currenttime = timeticker
+    userInfo.sites[index].currenttime = userInfo.sites[index].currenttime
     let jsonObjR = {"userid":userid, "data": userInfo}
     changeInfo(jsonObjR) // 지금까지 접속한 currenttime 서버에 반영
   }
