@@ -101,6 +101,7 @@ function onMessageListener(request, sender, sendResponse){
         
         sendResponse({"userid":userid, blocked: "not yet" , "theme":userInfo.skin.theme});
         userInfo.sites[index].currenttime += 30000; // content에서 불리는 시간만큼 더해줌 (1분씩)
+        console.log(userInfo.sites[index].currenttime)
         jsonObj = {"userid":userid, "data": userInfo}
         changeInfo(jsonObj) // 서버에 업데이트
         // sendResponse({"userid":userid, blocked: "not yet" , "theme":userInfo.skin.theme});

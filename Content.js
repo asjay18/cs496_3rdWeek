@@ -358,7 +358,7 @@ function gameBtnFunc(){
   chrome.runtime.sendMessage({hostname: window.location.hostname, isgame: true}, (response) => {
     if(response.blocked == "game blocked"){
       alert("오늘은 더 이상 게임을 시도할 수 없습니다.")
-      document.location.href = `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=240000` // 1분 안에 통과해야 함
+      // document.location.href = `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=240000` // 1분 안에 통과해야 함
     }
     else{
       document.location.href= `http://192.249.18.156:443/spacegame?id=${response.userid}&hostname=${window.location.hostname}&time=240000` // 1분 안에 통과해야 함
